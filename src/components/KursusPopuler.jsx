@@ -24,7 +24,7 @@ const KursusPopuler = () => {
     },
     {
       category: "UI/UX Design",
-      name: "Membuat Wireframe Hingga Ke Visual Design",
+      name: "Membuat Wireframe Hingga Ke Visual",
       lecturer: "Anis Muhaimin",
       level: "ADVANCED",
       rating: 4.5,
