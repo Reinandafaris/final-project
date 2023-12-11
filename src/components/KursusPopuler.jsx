@@ -1,3 +1,4 @@
+import { VITE_API_BASE_URL } from 'import.meta.env';
 import { useEffect, useState } from "react";
 import Button from "./UI/Button";
 import CourseCard from "./UI/CourseCard";
@@ -11,7 +12,7 @@ const KursusPopuler = () => {
     const getAllCourse = async () => {
       try {
         const response = await axios.get(
-          `https://pragos-academy-api-production.up.railway.app/course/all`
+          `${VITE_API_BASE_URL}/course/all`
         );
           console.log(response.data.data)
         const data = response.data.data;
