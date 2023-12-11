@@ -1,27 +1,38 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import axios from "axios";
-
 const StudyCategories = () => {
-  const [category, setCategory] = useState([]);
-
-  useEffect(() => {
-    const getClassCategories = async () => {
-      try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_BASE_URL}/category/all`
-        );
-
-        const data = response.data.data;
-
-        setCategory(data);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-
-    getClassCategories();
-  }, []);
+  // Data kategori statis
+  const staticCategories = [
+    {
+      id: 1,
+      name: "UI/UX Design",
+      image: "https://i.ibb.co/MMtWtGC/uiux.jpg",
+    },
+    {
+      id: 2,
+      name: "Product Management",
+      image: "https://i.ibb.co/wBSVNg9/productmanagement.jpg",
+    },
+    {
+      id: 3,
+      name: "Web Development",
+      image: "https://i.ibb.co/JcL4MVW/webdevelopment.jpg",
+    },
+    {
+      id: 4,
+      name: "Android Development",
+      image: "https://i.ibb.co/nmck8sy/androiddevelopment.png",
+    },
+    {
+      id: 5,
+      name: "IOS Development",
+      image: "https://i.ibb.co/qydcScb/iosdevelopment.jpg",
+    },
+    {
+      id: 6,
+      name: "Data Science",
+      image: "https://i.ibb.co/1GhNxDn/datascience.png",
+    },
+    // Tambahkan kategori lainnya sesuai kebutuhan
+  ];
 
   return (
     <section className="container my-4">
@@ -32,26 +43,23 @@ const StudyCategories = () => {
         </span>
       </div>
       <div className="grid md:grid-cols-6 grid-cols-2 gap-5">
-        {category.map((kelas) => {
-          return (
-            // eslint-disable-next-line react/jsx-key
-            <div className="font-semibold text-sm hover:cursor-pointer">
-              <div key={kelas.id}>
-                <div className="rounded-[25px] overflow-hidden">
-                  <img
-                    className="w-full h-[120px] object-cover hover:scale-105 transition-all duration-300"
-                    src={`${kelas.image}`}
-                  />
-                </div>
-                <div className="text-center mt-3 hover:text-darkblue-05 transition-all">
-                  {kelas.name}
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      {staticCategories.map((category) => (
+        <div className="font-semibold text-sm hover:cursor-pointer" key={category.id}>
+          <div className="rounded-[25px] overflow-hidden">
+            <img
+              className="w-full h-[120px] object-cover hover:scale-105 transition-all duration-300"
+              src={category.image}
+              alt={category.name}
+            />
+          </div>
+          <div className="text-center mt-3 hover:text-darkblue-05 transition-all">
+            {category.name}
+          </div>
+        </div>
+      ))}
       </div>
     </section>
   );
 };
+
 export default StudyCategories;

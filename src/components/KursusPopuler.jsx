@@ -1,28 +1,39 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "./UI/Button";
 import CourseCard from "./UI/CourseCard";
-import axios from "axios";
 
 const KursusPopuler = () => {
-  const [course, setCourse] = useState([]);
+  const staticCourseData = [
+    {
+      category: "UI/UX Design",
+      name: "Belajar Web Designer Dengan Figma",
+      lecturer: "Joko Samudro",
+      level: "Intermediate",
+      rating: 4.5,
+      code: "UIUX0123",
+      image: "https://i.ibb.co/MMtWtGC/uiux.jpg",
+    },
+    {
+      category: "Data Science",
+      name: "Data Cleaning Untuk Profesional",
+      lecturer: "Joko Permana",
+      level: "ADVANCED",
+      rating: 4.5,
+      code: "DS0323",
+      image: "https://i.ibb.co/1GhNxDn/datascience.png",
+    },
+    {
+      category: "UI/UX Design",
+      name: "Membuat Wireframe Hingga Ke Visual Design",
+      lecturer: "Anis Muhaimin",
+      level: "ADVANCED",
+      rating: 4.5,
+      code: "UIUX01222",
+      image: "https://i.ibb.co/MMtWtGC/uiux.jpg",
+    },
+  ];
+  const [course] = useState(staticCourseData);
   const [selectedNumber, setSelectedNumber] = useState(null);
-
-  useEffect(() => {
-    const getAllCourse = async () => {
-      try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_BASE_URL}/course/all`
-        );
-          console.log(response.data.data)
-        const data = response.data.data;
-
-        setCourse(data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    getAllCourse();
-  }, []);
 
   return (
     <section className="container my-4">
@@ -101,7 +112,6 @@ const KursusPopuler = () => {
               : "text-sm !bg-darkblue-01 !text-black hover:!bg-darkblue-05 whitespace-nowrap"
           }
           size="xs"
-          // onClick={filterForPM}
           onClick={() => setSelectedNumber(1)}
         >
           Business Intelligence
