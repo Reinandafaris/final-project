@@ -1,4 +1,3 @@
-import { VITE_API_BASE_URL } from 'import.meta.env';
 import { useEffect, useState } from "react";
 import Button from "./UI/Button";
 import CourseCard from "./UI/CourseCard";
@@ -12,7 +11,7 @@ const KursusPopuler = () => {
     const getAllCourse = async () => {
       try {
         const response = await axios.get(
-          `${VITE_API_BASE_URL}/course/all`
+          `${import.meta.env.VITE_API_BASE_URL}/course/all`
         );
           console.log(response.data.data)
         const data = response.data.data;

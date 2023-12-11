@@ -1,4 +1,3 @@
-import { VITE_API_BASE_URL } from 'import.meta.env';
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
@@ -10,7 +9,7 @@ const StudyCategories = () => {
     const getClassCategories = async () => {
       try {
         const response = await axios.get(
-          `${VITE_API_BASE_URL}/category/all`
+          `${import.meta.env.VITE_API_BASE_URL}/category/all`
         );
 
         const data = response.data.data;
