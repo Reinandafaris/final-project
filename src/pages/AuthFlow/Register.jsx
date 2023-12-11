@@ -1,11 +1,9 @@
 import Button from "@/components/UI/Button";
 import Input from "@/components/UI/Input";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
-import axios from "axios";
 import { ValidationContext } from "@/context/ValidationContext";
 
-import toast from "react-hot-toast";
 function Register() {
 	const {
 		handleNameValidation,
@@ -30,42 +28,8 @@ function Register() {
 		isPhoneEmpty: false,
 		isPasswordError: false,
 	});
-	const navigate = useNavigate();
 
-	const onSubmit = async (e) => {
-		e.preventDefault();
-
-		try {
-			let data = JSON.stringify({
-				name,
-				email,
-				phone,
-				password,
-				city,
-				country,
-			});
-
-			let config = {
-				method: "post",
-				url: `https://pragos-academy-api-production.up.railway.app/register`,
-				headers: {
-					"Content-Type": "application/json",
-				},
-				data: data,
-			};
-
-			const response = await axios.request(config);
-
-			console.log(response);
-			if (response.data.error === true) {
-				toast.error(response.data.data);
-			} else {
-				navigate(`/auth/otp/${email}`);
-			}
-		} catch (error) {
-			console.log(error.message);
-		}
-	};
+	
 
 	return (
 		<div className="max-w-[452px] w-full">
@@ -272,9 +236,11 @@ function Register() {
 
 			{/* Tombol Button */}
 			<div className="mt-5">
-				<Button onClick={onSubmit} className="w-full">
+        <Link to="/auth/otp/:email" >
+				<Button className="w-full">
 					Daftar
 				</Button>
+        </Link>
 			</div>
 			<div className="mt-3 flex justify-center gap-2">
 				<h3>Sudah punya akun?</h3>
